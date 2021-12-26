@@ -50,7 +50,7 @@ namespace Kruskal_s_algorithm
             this.ForSorting.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ForSorting.Location = new System.Drawing.Point(200, 12);
             this.ForSorting.Name = "ForSorting";
-            this.ForSorting.Size = new System.Drawing.Size(210, 211);
+            this.ForSorting.Size = new System.Drawing.Size(260, 211);
             this.ForSorting.TabIndex = 2;
             // 
             // CloseForm
@@ -66,7 +66,7 @@ namespace Kruskal_s_algorithm
             // ForDecision
             // 
             this.ForDecision.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ForDecision.Location = new System.Drawing.Point(416, 12);
+            this.ForDecision.Location = new System.Drawing.Point(466, 12);
             this.ForDecision.Name = "ForDecision";
             this.ForDecision.Size = new System.Drawing.Size(160, 211);
             this.ForDecision.TabIndex = 4;
@@ -74,7 +74,7 @@ namespace Kruskal_s_algorithm
             // ForArcs
             // 
             this.ForArcs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ForArcs.Location = new System.Drawing.Point(582, 12);
+            this.ForArcs.Location = new System.Drawing.Point(632, 12);
             this.ForArcs.Name = "ForArcs";
             this.ForArcs.Size = new System.Drawing.Size(260, 211);
             this.ForArcs.TabIndex = 5;
@@ -94,7 +94,7 @@ namespace Kruskal_s_algorithm
             this.ExecuteButton.Name = "ExecuteButton";
             this.ExecuteButton.Size = new System.Drawing.Size(88, 40);
             this.ExecuteButton.TabIndex = 7;
-            this.ExecuteButton.Text = "Execute";
+            this.ExecuteButton.Text = "Решить";
             this.ExecuteButton.UseVisualStyleBackColor = true;
             this.ExecuteButton.Click += new System.EventHandler(this.ExecuteButton_Click);
             // 

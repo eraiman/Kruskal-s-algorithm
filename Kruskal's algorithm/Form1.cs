@@ -13,7 +13,7 @@ namespace Kruskal_s_algorithm
 {
     public partial class Form1 : Form
     {
-        //System.Media.SoundPlayer player = new System.Media.SoundPlayer();
+        System.Media.SoundPlayer player = new System.Media.SoundPlayer();
         public Form1()
         {
             InitializeComponent();
@@ -161,8 +161,8 @@ namespace Kruskal_s_algorithm
 };
         private void Form1_Load(object sender, EventArgs e)
         {
-            System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"c:\Vivaldi.wav");
-            player.Play();
+            //System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"c:\Vivaldi.wav");
+            //player.Play();
 
             ForSorting.Visible = false;
             ForDecision.Visible = false;
@@ -212,6 +212,25 @@ namespace Kruskal_s_algorithm
         {
 
         }
+
+        public Button exitToTheMenu = new Button();
+        public Button showImage = new Button();
+        void ShowButtons()
+        {
+            exitToTheMenu.Text = "Назад в меню";
+            exitToTheMenu.Size = new Size(88, 40);
+            exitToTheMenu.Location = new Point(12, 81);
+            this.Controls.Add(exitToTheMenu);
+
+            exitToTheMenu.Click += new System.EventHandler(this.exitToTheMenu_Click);
+
+            showImage.Text = "Показать картинку";
+            showImage.Size = new Size(88, 40);
+            showImage.Location = new Point(12, 35);
+            this.Controls.Add(showImage);
+
+            showImage.Click += new System.EventHandler(this.showImage_Click);
+        }
         private void ExecuteButton_Click(object sender, EventArgs e)
         {
             withoutSorting.Visible = false;
@@ -222,23 +241,28 @@ namespace Kruskal_s_algorithm
             if (withoutSorting.Checked)
             {
                 int nU = 25, nD = 42, treescount = 0, treesnumber = 0, usednodes = 0, From = 0, To = 0, FromTree = 0, ToTree = 0;
+
                 ForDecision.Visible = true;
                 ForArcs.Visible = true;
 
                 while (true)
                 {
                     int minelement = 10000, minelementposition = 0;
+
                     for (int i = 0; i < nD; i++)
                     {
                         int flag = Convert.ToInt32(ForArcs.Rows[i].Cells[3].Value);
+
                         if (flag == 0)
                         {
                             int tekL = Convert.ToInt32(ForArcs.Rows[i].Cells[2].Value);
+
                             if (tekL < minelement)
                             {
                                 minelement = tekL;
                                 minelementposition = i;
                             }
+
                             From = Convert.ToInt32(ForArcs.Rows[minelementposition].Cells[0].Value);
                             To = Convert.ToInt32(ForArcs.Rows[minelementposition].Cells[1].Value);
                             FromTree = Convert.ToInt32(ForDecision.Rows[From - 1].Cells[1].Value);
@@ -252,6 +276,7 @@ namespace Kruskal_s_algorithm
                         treescount++;
                         treesnumber++;
                         usednodes = usednodes + 2;
+
                         ForDecision.Rows[To - 1].Cells[1].Value = treescount;
                         ForDecision.Rows[From - 1].Cells[1].Value = treescount;
                         ForArcs.Rows[minelementposition].Cells[3].Value = 1;
@@ -259,10 +284,12 @@ namespace Kruskal_s_algorithm
                     else if ((FromTree != 0 && ToTree == 0) || (FromTree == 0 && ToTree != 0))
                     {
                         usednodes++;
+
                         if (FromTree == 0)
                         {
                             ForDecision.Rows[From - 1].Cells[1].Value = ToTree;
                         }
+
                         else if (ToTree == 0)
                         {
                             ForDecision.Rows[To - 1].Cells[1].Value = FromTree;
@@ -270,35 +297,44 @@ namespace Kruskal_s_algorithm
 
                         ForArcs.Rows[minelementposition].Cells[3].Value = 1;
                     }
+
                     else if (FromTree != 0 && ToTree != 0 && FromTree != ToTree)
                     {
                         treescount--;
+
                         for (int i = 0; i < nU; i++)
                         {
                             int treenum = Convert.ToInt32(ForDecision.Rows[i].Cells[1].Value);
+
                             if (treenum == ToTree)
                             {
                                 ForDecision.Rows[i].Cells[1].Value = FromTree;
                             }
                         }
+
                         ForArcs.Rows[minelementposition].Cells[3].Value = 1;
                     }
+
                     else if (FromTree == ToTree)
                     {
                         ForArcs.Rows[minelementposition].Cells[3].Value = 2;
                     }
+
                     if (treescount == 1 && usednodes == nU)
                     {
                         break;
                     }
+
                 }
                 for (int i = 0; i < nD; i++)
                 {
                     int flag = Convert.ToInt32(ForArcs.Rows[i].Cells[3].Value);
+
                     if (flag == 1)
                     {
                         ForArcs.Rows[i].DefaultCellStyle.BackColor = Color.Green;
                     }
+
                     if (flag == 2)
                     {
                         ForArcs.Rows[i].DefaultCellStyle.BackColor = Color.Red;
@@ -306,19 +342,22 @@ namespace Kruskal_s_algorithm
                 }
 
                 Button exitToTheMenu = new Button();
-                exitToTheMenu.Text = "Exit to the menu";
+                exitToTheMenu.Text = "Назад в меню";
                 exitToTheMenu.Size = new Size(88, 40);
                 exitToTheMenu.Location = new Point(12, 81);
                 this.Controls.Add(exitToTheMenu);
                 exitToTheMenu.Click += new System.EventHandler(this.exitToTheMenu_Click);
+                ShowButtons();
             }
 
             else if (withSorting.Checked)
             {
                 int nU = 25, treescount = 0, treesnumber = 0, usednodes = 0, From = 0, To = 0, FromTree = 0, ToTree = 0, minposition = 0;
+                int min = 10000, nD = 42, count = 0, minIndex = 0;
+
                 ForSorting.Visible = true;
                 ForDecision.Visible = true;
-                int min = 10000, nD = 42, count = 0, minIndex = 0;
+
                 while (count != nD)
                 {
                     for (int i = 0; i < nD; i++)
@@ -331,6 +370,7 @@ namespace Kruskal_s_algorithm
                             {
                                 min = Arcs[i, 2];
                                 minIndex = i;
+
                                 for (int k = 0; k < 4; k++)
                                 {
                                     SortArcs[count, k] = Arcs[minIndex, k];
@@ -340,21 +380,26 @@ namespace Kruskal_s_algorithm
 
                         }
                     }
+
                     Arcs[minIndex, 3] = 1;
                     min = 10000;
+
                     count++;
 
                 }
                 ForSorting.RowCount = nD;
                 ForSorting.ColumnCount = 5;
+
                 ForSorting.Columns[0].HeaderCell.Value = "Begin";
                 ForSorting.Columns[1].HeaderCell.Value = "End";
                 ForSorting.Columns[2].HeaderCell.Value = "Length";
                 ForSorting.Columns[3].HeaderCell.Value = "Flag";
+
                 ForSorting.Columns[0].Width = 50;
                 ForSorting.Columns[1].Width = 50;
                 ForSorting.Columns[2].Width = 50;
                 ForSorting.Columns[3].Width = 50;
+
                 for (int i = 0; i < nD; i++)
                 {
                     for (int j = 0; j < 4; j++)
@@ -363,23 +408,27 @@ namespace Kruskal_s_algorithm
                     }
 
                 }
+
                 bool check = true;
+
                 while (check == true)
                 {
                     for (int i = 0; i < nD; i++)
                     {
                         int flag = Convert.ToInt32(ForSorting.Rows[i].Cells[3].Value);
+
                         if (flag == 0)
                         {
                             minposition = i;
+
                             From = Convert.ToInt32(ForSorting.Rows[i].Cells[0].Value);
                             To = Convert.ToInt32(ForSorting.Rows[i].Cells[1].Value);
                             FromTree = Convert.ToInt32(ForDecision.Rows[From - 1].Cells[1].Value);
                             ToTree = Convert.ToInt32(ForDecision.Rows[To - 1].Cells[1].Value);
+
                             break;
                         }
                     }
-
 
                     if (FromTree == 0
                         && ToTree == 0)
@@ -412,9 +461,11 @@ namespace Kruskal_s_algorithm
                     else if (FromTree != 0 && ToTree != 0 && FromTree != ToTree)
                     {
                         treescount--;
+
                         for (int i = 0; i < nU; i++)
                         {
                             int treenum = Convert.ToInt32(ForDecision.Rows[i].Cells[1].Value);
+
                             if (treenum == ToTree)
                             {
                                 ForDecision.Rows[i].Cells[1].Value = FromTree;
@@ -433,13 +484,16 @@ namespace Kruskal_s_algorithm
                         check = false;
                     }
                 }
+
                 for (int i = 0; i < nD; i++)
                 {
                     int flag = Convert.ToInt32(ForSorting.Rows[i].Cells[4].Value);
+
                     if (flag == 1)
                     {
                         ForSorting.Rows[i].Cells[0].Style.BackColor = Color.Green;
                     }
+
                     if (flag == 2)
                     {
                         ForSorting.Rows[i].DefaultCellStyle.BackColor = Color.Red;
@@ -447,11 +501,13 @@ namespace Kruskal_s_algorithm
                 }
 
                 Button exitToTheMenu = new Button();
-                exitToTheMenu.Text = "Exit to the menu";
+                exitToTheMenu.Text = "Назад в меню";
                 exitToTheMenu.Size = new Size(88, 40);
                 exitToTheMenu.Location = new Point(12, 81);
                 this.Controls.Add(exitToTheMenu);
                 exitToTheMenu.Click += new System.EventHandler(this.exitToTheMenu_Click);
+
+                ShowButtons();
             }
 
             else if (showPicture.Checked)
@@ -459,12 +515,30 @@ namespace Kruskal_s_algorithm
                 pictureBox1.Visible = true;
 
                 Button exitToTheMenu = new Button();
-                exitToTheMenu.Text = "Exit to the menu";
+                exitToTheMenu.Text = "Назад в меню";
                 exitToTheMenu.Size = new Size(88, 40);
                 exitToTheMenu.Location = new Point(12, 81);
                 this.Controls.Add(exitToTheMenu);
                 exitToTheMenu.Click += new System.EventHandler(this.exitToTheMenu_Click);
             } 
+        }
+
+        public int count=0;
+        private void showImage_Click(object sender, EventArgs e)
+        {
+            count++;
+            
+            if (count%2==0)
+            {
+                pictureBox1.Visible = false;
+                showImage.Text = "Показать картинку";
+            }
+
+            else
+            {
+                pictureBox1.Visible = true;
+                showImage.Text = "Убрать картинку";
+            }
         }
         private void exitToTheMenu_Click(object sender, EventArgs e)
         {
@@ -472,11 +546,14 @@ namespace Kruskal_s_algorithm
             withSorting.Visible = true;
             showPicture.Visible = true;
             ExecuteButton.Visible = true;
+            showImage.Visible = true;
 
             ForSorting.Visible = false;
             ForDecision.Visible = false;
             ForArcs.Visible = false;
             pictureBox1.Visible = false;
+            showImage.Visible = false;
+            exitToTheMenu.Visible = false;
 
             ForArcs.RowCount = 42;
             ForArcs.ColumnCount = 4;
