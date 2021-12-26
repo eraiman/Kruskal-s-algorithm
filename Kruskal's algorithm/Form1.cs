@@ -84,6 +84,7 @@ namespace Kruskal_s_algorithm
             {1,10,100,0},
            };
 
+
         public int[,] SortArcs = new int[,]
              {
 
