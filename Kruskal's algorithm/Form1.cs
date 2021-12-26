@@ -13,7 +13,7 @@ namespace Kruskal_s_algorithm
 {
     public partial class Form1 : Form
     {
-        System.Media.SoundPlayer player = new System.Media.SoundPlayer();
+        //System.Media.SoundPlayer player = new System.Media.SoundPlayer();
         public Form1()
         {
             InitializeComponent();
