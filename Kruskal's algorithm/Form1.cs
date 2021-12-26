@@ -84,7 +84,6 @@ namespace Kruskal_s_algorithm
             {1,10,100,0},
            };
 
-
         public int[,] SortArcs = new int[,]
              {
 
@@ -162,8 +161,8 @@ namespace Kruskal_s_algorithm
 };
         private void Form1_Load(object sender, EventArgs e)
         {
-            //System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"c:\Vivaldi.wav");
-            //player.Play();
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"c:\Vivaldi.wav");
+            player.Play();
 
             ForSorting.Visible = false;
             ForDecision.Visible = false;
@@ -217,6 +216,7 @@ namespace Kruskal_s_algorithm
         {
             withoutSorting.Visible = false;
             withSorting.Visible = false;
+            showPicture.Visible = false;
             ExecuteButton.Visible = false;
 
             if (withoutSorting.Checked)
@@ -304,6 +304,13 @@ namespace Kruskal_s_algorithm
                         ForArcs.Rows[i].DefaultCellStyle.BackColor = Color.Red;
                     }
                 }
+
+                Button exitToTheMenu = new Button();
+                exitToTheMenu.Text = "Exit to the menu";
+                exitToTheMenu.Size = new Size(88, 40);
+                exitToTheMenu.Location = new Point(12, 81);
+                this.Controls.Add(exitToTheMenu);
+                exitToTheMenu.Click += new System.EventHandler(this.exitToTheMenu_Click);
             }
 
             else if (withSorting.Checked)
@@ -438,20 +445,32 @@ namespace Kruskal_s_algorithm
                         ForSorting.Rows[i].DefaultCellStyle.BackColor = Color.Red;
                     }
                 }
+
+                Button exitToTheMenu = new Button();
+                exitToTheMenu.Text = "Exit to the menu";
+                exitToTheMenu.Size = new Size(88, 40);
+                exitToTheMenu.Location = new Point(12, 81);
+                this.Controls.Add(exitToTheMenu);
+                exitToTheMenu.Click += new System.EventHandler(this.exitToTheMenu_Click);
             }
 
-            Button exitToTheMenu = new Button();
-            exitToTheMenu.Text = "Exit to the menu";
-            exitToTheMenu.Size = new Size(88, 40);
-            exitToTheMenu.Location = new Point(12, 58);
-            this.Controls.Add(exitToTheMenu);
-            exitToTheMenu.Click += new System.EventHandler(this.exitToTheMenu_Click);
+            else if (showPicture.Checked)
+            {
+                pictureBox1.Visible = true;
 
+                Button exitToTheMenu = new Button();
+                exitToTheMenu.Text = "Exit to the menu";
+                exitToTheMenu.Size = new Size(88, 40);
+                exitToTheMenu.Location = new Point(12, 81);
+                this.Controls.Add(exitToTheMenu);
+                exitToTheMenu.Click += new System.EventHandler(this.exitToTheMenu_Click);
+            } 
         }
         private void exitToTheMenu_Click(object sender, EventArgs e)
         {
             withoutSorting.Visible = true;
             withSorting.Visible = true;
+            showPicture.Visible = true;
             ExecuteButton.Visible = true;
 
             ForSorting.Visible = false;
@@ -505,7 +524,6 @@ namespace Kruskal_s_algorithm
             ForDecision.Columns[1].HeaderCell.Value = "Tree";
         }
     }
-
 }
 
 

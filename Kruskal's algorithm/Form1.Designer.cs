@@ -38,6 +38,7 @@ namespace Kruskal_s_algorithm
             this.ExecuteButton = new System.Windows.Forms.Button();
             this.withSorting = new System.Windows.Forms.RadioButton();
             this.withoutSorting = new System.Windows.Forms.RadioButton();
+            this.showPicture = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.ForSorting)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ForDecision)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ForArcs)).BeginInit();
@@ -54,7 +55,7 @@ namespace Kruskal_s_algorithm
             // 
             // CloseForm
             // 
-            this.CloseForm.Location = new System.Drawing.Point(12, 104);
+            this.CloseForm.Location = new System.Drawing.Point(12, 127);
             this.CloseForm.Name = "CloseForm";
             this.CloseForm.Size = new System.Drawing.Size(88, 40);
             this.CloseForm.TabIndex = 3;
@@ -89,7 +90,7 @@ namespace Kruskal_s_algorithm
             // 
             // ExecuteButton
             // 
-            this.ExecuteButton.Location = new System.Drawing.Point(12, 58);
+            this.ExecuteButton.Location = new System.Drawing.Point(12, 81);
             this.ExecuteButton.Name = "ExecuteButton";
             this.ExecuteButton.Size = new System.Drawing.Size(88, 40);
             this.ExecuteButton.TabIndex = 7;
@@ -117,12 +118,24 @@ namespace Kruskal_s_algorithm
             this.withoutSorting.Text = "Без сортировки";
             this.withoutSorting.UseVisualStyleBackColor = true;
             // 
+            // showPicture
+            // 
+            this.showPicture.AutoSize = true;
+            this.showPicture.Location = new System.Drawing.Point(15, 58);
+            this.showPicture.Name = "showPicture";
+            this.showPicture.Size = new System.Drawing.Size(121, 17);
+            this.showPicture.TabIndex = 12;
+            this.showPicture.TabStop = true;
+            this.showPicture.Text = "Показать решение";
+            this.showPicture.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1304, 749);
+            this.Controls.Add(this.showPicture);
             this.Controls.Add(this.withoutSorting);
             this.Controls.Add(this.withSorting);
             this.Controls.Add(this.ExecuteButton);
@@ -152,6 +165,7 @@ namespace Kruskal_s_algorithm
         private System.Windows.Forms.Button ExecuteButton;
         private System.Windows.Forms.RadioButton withSorting;
         private System.Windows.Forms.RadioButton withoutSorting;
+        private System.Windows.Forms.RadioButton showPicture;
     }
 }
 
