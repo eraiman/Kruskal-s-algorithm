@@ -39,10 +39,21 @@ namespace Kruskal_s_algorithm
             this.withSorting = new System.Windows.Forms.RadioButton();
             this.withoutSorting = new System.Windows.Forms.RadioButton();
             this.showPicture = new System.Windows.Forms.RadioButton();
+            this.withPrim = new System.Windows.Forms.RadioButton();
+            this.BeginPointBox = new System.Windows.Forms.TextBox();
+            this.Dijkstra = new System.Windows.Forms.RadioButton();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.goToMenu = new System.Windows.Forms.Button();
+            this.showIm = new System.Windows.Forms.Button();
+            this.showTrees = new System.Windows.Forms.Button();
+            this.showArcs = new System.Windows.Forms.Button();
+            this.Graph = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.ForSorting)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ForDecision)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ForArcs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Graph)).BeginInit();
             this.SuspendLayout();
             // 
             // ForSorting
@@ -55,7 +66,7 @@ namespace Kruskal_s_algorithm
             // 
             // CloseForm
             // 
-            this.CloseForm.Location = new System.Drawing.Point(12, 127);
+            this.CloseForm.Location = new System.Drawing.Point(12, 251);
             this.CloseForm.Name = "CloseForm";
             this.CloseForm.Size = new System.Drawing.Size(88, 40);
             this.CloseForm.TabIndex = 3;
@@ -78,6 +89,7 @@ namespace Kruskal_s_algorithm
             this.ForArcs.Name = "ForArcs";
             this.ForArcs.Size = new System.Drawing.Size(260, 211);
             this.ForArcs.TabIndex = 5;
+            this.ForArcs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ForArcs_CellContentClick);
             // 
             // pictureBox1
             // 
@@ -90,7 +102,7 @@ namespace Kruskal_s_algorithm
             // 
             // ExecuteButton
             // 
-            this.ExecuteButton.Location = new System.Drawing.Point(12, 81);
+            this.ExecuteButton.Location = new System.Drawing.Point(12, 205);
             this.ExecuteButton.Name = "ExecuteButton";
             this.ExecuteButton.Size = new System.Drawing.Size(88, 40);
             this.ExecuteButton.TabIndex = 7;
@@ -121,7 +133,7 @@ namespace Kruskal_s_algorithm
             // showPicture
             // 
             this.showPicture.AutoSize = true;
-            this.showPicture.Location = new System.Drawing.Point(15, 58);
+            this.showPicture.Location = new System.Drawing.Point(12, 182);
             this.showPicture.Name = "showPicture";
             this.showPicture.Size = new System.Drawing.Size(121, 17);
             this.showPicture.TabIndex = 12;
@@ -129,12 +141,115 @@ namespace Kruskal_s_algorithm
             this.showPicture.Text = "Показать решение";
             this.showPicture.UseVisualStyleBackColor = true;
             // 
+            // withPrim
+            // 
+            this.withPrim.AutoSize = true;
+            this.withPrim.Location = new System.Drawing.Point(15, 58);
+            this.withPrim.Name = "withPrim";
+            this.withPrim.Size = new System.Drawing.Size(121, 17);
+            this.withPrim.TabIndex = 13;
+            this.withPrim.TabStop = true;
+            this.withPrim.Text = "С помощью Прима";
+            this.withPrim.UseVisualStyleBackColor = true;
+            // 
+            // BeginPointBox
+            // 
+            this.BeginPointBox.Location = new System.Drawing.Point(15, 81);
+            this.BeginPointBox.Name = "BeginPointBox";
+            this.BeginPointBox.Size = new System.Drawing.Size(100, 20);
+            this.BeginPointBox.TabIndex = 14;
+            // 
+            // Dijkstra
+            // 
+            this.Dijkstra.AutoSize = true;
+            this.Dijkstra.Location = new System.Drawing.Point(15, 107);
+            this.Dijkstra.Name = "Dijkstra";
+            this.Dijkstra.Size = new System.Drawing.Size(127, 17);
+            this.Dijkstra.TabIndex = 15;
+            this.Dijkstra.TabStop = true;
+            this.Dijkstra.Text = "Алгоритм Дейкстра";
+            this.Dijkstra.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(12, 130);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 16;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(12, 156);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 20);
+            this.textBox2.TabIndex = 17;
+            // 
+            // goToMenu
+            // 
+            this.goToMenu.Location = new System.Drawing.Point(12, 159);
+            this.goToMenu.Name = "goToMenu";
+            this.goToMenu.Size = new System.Drawing.Size(88, 40);
+            this.goToMenu.TabIndex = 18;
+            this.goToMenu.Text = "Назад в меню";
+            this.goToMenu.UseVisualStyleBackColor = true;
+            this.goToMenu.Click += new System.EventHandler(this.goToMenu_Click);
+            // 
+            // showIm
+            // 
+            this.showIm.Location = new System.Drawing.Point(12, 113);
+            this.showIm.Name = "showIm";
+            this.showIm.Size = new System.Drawing.Size(88, 40);
+            this.showIm.TabIndex = 19;
+            this.showIm.Text = "Показать картинку";
+            this.showIm.UseVisualStyleBackColor = true;
+            // 
+            // showTrees
+            // 
+            this.showTrees.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.showTrees.Location = new System.Drawing.Point(12, 67);
+            this.showTrees.Name = "showTrees";
+            this.showTrees.Size = new System.Drawing.Size(88, 40);
+            this.showTrees.TabIndex = 20;
+            this.showTrees.Text = "Выделить деревья";
+            this.showTrees.UseVisualStyleBackColor = true;
+            this.showTrees.Click += new System.EventHandler(this.showTrees_Click);
+            // 
+            // showArcs
+            // 
+            this.showArcs.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.showArcs.Location = new System.Drawing.Point(12, 21);
+            this.showArcs.Name = "showArcs";
+            this.showArcs.Size = new System.Drawing.Size(88, 40);
+            this.showArcs.TabIndex = 21;
+            this.showArcs.Text = "Выделить дуги";
+            this.showArcs.UseVisualStyleBackColor = true;
+            this.showArcs.Click += new System.EventHandler(this.showArcs_Click);
+            // 
+            // Graph
+            // 
+            this.Graph.Image = ((System.Drawing.Image)(resources.GetObject("Graph.Image")));
+            this.Graph.Location = new System.Drawing.Point(200, 229);
+            this.Graph.Name = "Graph";
+            this.Graph.Size = new System.Drawing.Size(592, 397);
+            this.Graph.TabIndex = 22;
+            this.Graph.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1304, 749);
+            this.Controls.Add(this.Graph);
+            this.Controls.Add(this.showArcs);
+            this.Controls.Add(this.showTrees);
+            this.Controls.Add(this.showIm);
+            this.Controls.Add(this.goToMenu);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.Dijkstra);
+            this.Controls.Add(this.BeginPointBox);
+            this.Controls.Add(this.withPrim);
             this.Controls.Add(this.showPicture);
             this.Controls.Add(this.withoutSorting);
             this.Controls.Add(this.withSorting);
@@ -151,6 +266,7 @@ namespace Kruskal_s_algorithm
             ((System.ComponentModel.ISupportInitialize)(this.ForDecision)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ForArcs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Graph)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -166,6 +282,16 @@ namespace Kruskal_s_algorithm
         private System.Windows.Forms.RadioButton withSorting;
         private System.Windows.Forms.RadioButton withoutSorting;
         private System.Windows.Forms.RadioButton showPicture;
+        private System.Windows.Forms.RadioButton withPrim;
+        private System.Windows.Forms.TextBox BeginPointBox;
+        private System.Windows.Forms.RadioButton Dijkstra;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button goToMenu;
+        private System.Windows.Forms.Button showIm;
+        private System.Windows.Forms.Button showTrees;
+        private System.Windows.Forms.Button showArcs;
+        private System.Windows.Forms.PictureBox Graph;
     }
 }
 
