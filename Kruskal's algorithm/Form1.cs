@@ -599,13 +599,6 @@ namespace Kruskal_s_algorithm
                 
                 int Current = int.Parse(BeginPointBox.Text), nU = 25, nD = 40, count = 1;
 
-                int[] Check = new int[nD];
-
-                for (int k = 0; k < nD; k++)
-                {
-                    Check[k] = 0;
-                }
-
                 ForDecision.Rows[Current - 1].Cells[1].Value = 1;
                 ForDecision.Rows[Current - 1].Cells[2].Value = 2;
 
@@ -699,13 +692,12 @@ namespace Kruskal_s_algorithm
                     {
                         if (Arcs[i, 0] == DecisionFirst && Arcs[i, 1] == DecisionSecond)
                         {
-                            Check[i] = 1;
-
                             ForArcs.Rows[i].Cells[0].Style.BackColor = System.Drawing.Color.Green;
                             ForArcs.Rows[i].Cells[1].Style.BackColor = System.Drawing.Color.Green;
                             ForArcs.Rows[i].Cells[2].Style.BackColor = System.Drawing.Color.Green;
                         }
                     }
+
                     Current = Convert.ToInt32(ForDecision.Rows[Position].Cells[0].Value);
 
                     ForDecision.Rows[Position].Cells[2].Value = 2;
@@ -729,32 +721,32 @@ namespace Kruskal_s_algorithm
                 {
                     for (int i = 0; i < nD; i++)
                     {
-                        int c = 0;
+                        int city = 0;
                         if (Arcs[i, 0] == current)
                         {
-                            c = Arcs[i, 1];
+                            city = Arcs[i, 1];
                             length = Arcs[i, 2];
                         }
                         else if (Arcs[i, 1] == current)
                         {
-                            c = Arcs[i, 0];
+                            city = Arcs[i, 0];
                             length = Arcs[i, 2];
                         }
-                        if (c > 0)
+                        if (city > 0)
                         {
-                            int flag = NodesForDijkstra[c - 1, 3];
+                            int flag = NodesForDijkstra[city - 1, 3];
 
                             if (flag == 0)
                             {
-                                int teksyh_s = Convert.ToInt32(Grid2.Rows[c - 1].Cells[2].Value);
-                                int otkuda = Convert.ToInt32(Grid2.Rows[c - 1].Cells[1].Value);
+                                int current_s = Convert.ToInt32(Grid2.Rows[city - 1].Cells[2].Value);
+                                int from = Convert.ToInt32(Grid2.Rows[city - 1].Cells[1].Value);
 
-                                if (teksyh_s == 0 || length + currentS < teksyh_s)
+                                if (current_s == 0 || length + currentS < current_s)
                                 {
-                                    teksyh_s = length + currentS;
-                                    otkuda = current;
-                                    Grid2.Rows[c - 1].Cells[2].Value = teksyh_s;
-                                    Grid2.Rows[c - 1].Cells[1].Value = otkuda;
+                                    current_s = length + currentS;
+                                    from = current;
+                                    Grid2.Rows[city - 1].Cells[2].Value = current_s;
+                                    Grid2.Rows[city - 1].Cells[1].Value = from;
                                 }
 
                             }
@@ -764,24 +756,26 @@ namespace Kruskal_s_algorithm
                     for (int j = 0; j < nU; j++)
                     {
                         int t_flag = Convert.ToInt32(Grid2.Rows[j].Cells[3].Value);
-                        int teksyh_s = Convert.ToInt32(Grid2.Rows[j].Cells[2].Value);
-                        if (t_flag == 0 && teksyh_s > 0)
+                        int current_s = Convert.ToInt32(Grid2.Rows[j].Cells[2].Value);
+
+                        if (t_flag == 0 && current_s > 0)
                         {
                             newcity = j;
-                            minimumS = teksyh_s;
+                            minimumS = current_s;
                             break;
                         }
                     }
                     for (int j = newcity + 1; j < nU; j++)
                     {
                         int t_flag = Convert.ToInt32(Grid2.Rows[j].Cells[3].Value);
-                        int teksyh_s = Convert.ToInt32(Grid2.Rows[j].Cells[2].Value);
-                        if (t_flag == 0 && teksyh_s > 0)
+                        int current_s = Convert.ToInt32(Grid2.Rows[j].Cells[2].Value);
+
+                        if (t_flag == 0 && current_s > 0)
                         {
-                            if (teksyh_s < minimumS)
+                            if (current_s < minimumS)
                             {
                                 newcity = j;
-                                minimumS = teksyh_s;
+                                minimumS = current_s;
                             }
                         }
                     }
@@ -790,45 +784,52 @@ namespace Kruskal_s_algorithm
                     current = newcity + 1;
                     currentS = Convert.ToInt32(Grid2.Rows[newcity].Cells[2].Value);
                 }
-                int tekysh1 = int.Parse(textBox2.Text);
-                int nachalo = int.Parse(textBox1.Text);
-                int pyti;
-                Grid2.Rows[nachalo-1].Cells[0].Style.BackColor = System.Drawing.Color.Gray;
+                int current1 = int.Parse(textBox2.Text);
+                int beginPoint = int.Parse(textBox1.Text);
+                int way;
+
+                Grid2.Rows[beginPoint - 1].Cells[0].Style.BackColor = System.Drawing.Color.Gray;
                 Output.ColumnCount = 1;
                 Output.RowCount = 24;
-                Output.Rows[0].Cells[0].Value = tekysh1;
+                Output.Rows[0].Cells[0].Value = current1;
+
                 int p = 1;
-                while (tekysh1 != nachalo)
+
+                while (current1 != beginPoint)
                 {
                     for (int i = 24; i >= 0; i--)
                     {
                         int c = 0;
-                        if (Convert.ToInt32(Grid2.Rows[i].Cells[0].Value) == tekysh1)
+
+                        if (Convert.ToInt32(Grid2.Rows[i].Cells[0].Value) == current1)
                         {
                             c = i;
                         }
+
                         if (c > 0)
                         {
                             Grid2.Rows[c].Cells[0].Style.BackColor = System.Drawing.Color.Gray;
 
-                            pyti = Convert.ToInt32(Grid2.Rows[c].Cells[1].Value);
+                            way = Convert.ToInt32(Grid2.Rows[c].Cells[1].Value);
 
                             for (int q = 0; q < nD; q++)
                             {
-                                if (Arcs[q, 0] == tekysh1 && Arcs[q, 1] == pyti
-                                    || Arcs[q, 1] == tekysh1 && Arcs[q, 0] == pyti)
+                                if (Arcs[q, 0] == current1 && Arcs[q, 1] == way
+                                    || Arcs[q, 1] == current1 && Arcs[q, 0] == way)
                                 {
                                     Grid1.Rows[q].Cells[0].Style.BackColor = System.Drawing.Color.Green;
                                     Grid1.Rows[q].Cells[1].Style.BackColor = System.Drawing.Color.Green;
                                     Grid1.Rows[q].Cells[2].Style.BackColor = System.Drawing.Color.Green;
                                 }
                             }
-                            tekysh1 = pyti;
-                            Output.Rows[p].Cells[0].Value = tekysh1;
+                            current1 = way;
+                            Output.Rows[p].Cells[0].Value = current1;
+
                             p++;
                         }
                     }
                 }
+
                 Graph.Visible = true;
                 showIm.Click += new EventHandler(showIm_Click);
             }
@@ -836,7 +837,18 @@ namespace Kruskal_s_algorithm
         
         private void showIm_Click(object sender, EventArgs e)
         {
-            pictureBox1.Visible = true;
+            if (count%2!=0)
+            {
+                pictureBox1.Visible = true;
+            }
+
+            else
+            {
+                pictureBox1.Visible = false;
+
+            }
+
+            count++;
         }
         
         private void ForArcs_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -929,37 +941,81 @@ namespace Kruskal_s_algorithm
         {
             int tree = Convert.ToInt32(ForDecision.Rows[0].Cells[1].Value);
 
-            for (int i=0;i<25;i++)
+            if (count%2!=0)
             {
-                if (Convert.ToInt32(ForDecision.Rows[i].Cells[1].Value)==tree)
+                for (int i = 0; i < 25; i++)
                 {
-                    ////ForDecision.Rows[i].Cells[0].Style.BackColor = System.Drawing.Color.Green;
-                    ForDecision.Rows[i].Cells[1].Style.BackColor = System.Drawing.Color.Green;
+                    if (Convert.ToInt32(ForDecision.Rows[i].Cells[1].Value) == tree)
+                    {
+                        ////ForDecision.Rows[i].Cells[0].Style.BackColor = System.Drawing.Color.Green;
+                        ForDecision.Rows[i].Cells[1].Style.BackColor = System.Drawing.Color.Green;
+                    }
                 }
             }
+            
+            else
+            {
+                for (int i = 0; i < 25; i++)
+                {
+                    if (Convert.ToInt32(ForDecision.Rows[i].Cells[1].Value) == tree)
+                    {
+                        ////ForDecision.Rows[i].Cells[0].Style.BackColor = System.Drawing.Color.Green;
+                        ForDecision.Rows[i].Cells[1].Style.BackColor = System.Drawing.Color.White;
+                    }
+                }
+            }
+            
 
         }
 
         private void showArcs_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < 42; i++)
-            {
-                if (Convert.ToInt32(ForSorting.Rows[i].Cells[3].Value) == 1)
-                {
-                    for (int j = 0; j < 4; j++)
-                    {
-                        ForSorting.Rows[i].Cells[j].Style.BackColor = Color.Green;
-                    }
-                }
 
-                else if (Convert.ToInt32(ForSorting.Rows[i].Cells[3].Value) == 2)
+            if (count%2==1)
+            {
+                for (int i = 0; i < 42; i++)
                 {
-                    for (int j = 0; j < 4; j++)
+                    if (Convert.ToInt32(ForSorting.Rows[i].Cells[3].Value) == 1)
                     {
-                        ForSorting.Rows[i].Cells[j].Style.BackColor = Color.Red;
+                        for (int j = 0; j < 4; j++)
+                        {
+                            ForSorting.Rows[i].Cells[j].Style.BackColor = Color.Green;
+                        }
+                    }
+
+                    else if (Convert.ToInt32(ForSorting.Rows[i].Cells[3].Value) == 2)
+                    {
+                        for (int j = 0; j < 4; j++)
+                        {
+                            ForSorting.Rows[i].Cells[j].Style.BackColor = Color.Red;
+                        }
                     }
                 }
             }
+
+            else
+            {
+                for (int i = 0; i < 42; i++)
+                {
+                    if (Convert.ToInt32(ForSorting.Rows[i].Cells[3].Value) == 1)
+                    {
+                        for (int j = 0; j < 4; j++)
+                        {
+                            ForSorting.Rows[i].Cells[j].Style.BackColor = Color.White;
+                        }
+                    }
+
+                    else if (Convert.ToInt32(ForSorting.Rows[i].Cells[3].Value) == 2)
+                    {
+                        for (int j = 0; j < 4; j++)
+                        {
+                            ForSorting.Rows[i].Cells[j].Style.BackColor = Color.White;
+                        }
+                    }
+                }
+            }
+
+            count++;
         }
     }
 }
