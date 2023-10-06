@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Media;
 
 //Cheking GitHub Desktop
+//One more time i'm superhuman
 
 namespace Kruskal_s_algorithm
 {
